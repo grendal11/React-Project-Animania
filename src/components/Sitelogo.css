@@ -1,0 +1,17 @@
+@import url('https://fonts.googleapis.com/css2?family=Hachi+Maru+Pop&display=swap');
+@import url('https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css');
+
+.logo-text {
+    color: greenyellow;
+    font-family:Hachi Maru Pop;
+    font-weight:bolder;
+    text-shadow:2px 2px darkslategray;
+}
+
+.logo-text i {
+    margin-right: 5px ;
+}
+
+.big-letter {
+    color:yellow;
+}
