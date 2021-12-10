@@ -1,0 +1,17 @@
+.article-img {
+   margin-bottom: 10px;
+}
+
+.article-part {
+    margin-bottom: 10px;
+}
+
+.part-header {
+    font-weight: bold;
+    text-align: center;
+}
+
+.part-content {
+    padding: 10px;
+    text-align: left;
+}

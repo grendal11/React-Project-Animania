@@ -1,6 +1,7 @@
 import Sitelogo from './components/Sitelogo';
 import Header from './components/Header';
 import Articles from './components/Articles';
+import Article from './components/Article/Article';
 import { useState, useEffect, Suspense } from 'react';
 import './App.css';
 
@@ -22,14 +23,16 @@ function App() {
   return (
     <div className="App">
       <Header />
-
-      <Suspense fallback={<p>Loading...</p>}>
+      <main className="app-main">
+      {/* <Suspense fallback={<p>Loading...</p>}>
           {articles.length > 0
             ? <Articles articles={articles} />
             : <h3 className="no-articles">No games yet</h3>
           }
-        </Suspense>
-
+        </Suspense> */}
+        <br />
+        <Article />
+        </main>
         <footer className="App-footer">
           <span><Sitelogo />&nbsp;App</span>
       </footer>

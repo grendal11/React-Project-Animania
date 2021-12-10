@@ -1,4 +1,4 @@
-import CategoryIcon from "./CategoryIcon";
+import CategoryIcon from './CategoryIcon';
 import { Button, Card } from 'react-bootstrap';
 
 export default function CategoryButton(props) {

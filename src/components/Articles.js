@@ -1,4 +1,4 @@
-import CategoryButton from "./CategoryButton";
+import CategoryButton from './CategoryButton';
 import { Row, Col } from 'react-bootstrap';
 
 function Articles(props) {
