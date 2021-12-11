@@ -2,9 +2,9 @@ import './Sitelogo.css';
 
 export default function Sitelogo() {
     return (
-        <span class="logo-text">
-            <i class="fa fa-paw" aria-hidden="true"></i>
-            <span class="big-letter">A</span>ni<span class="big-letter">M</span>ania
+        <span className="logo-text">
+            <i className="fa fa-paw" aria-hidden="true"></i>
+            <span className="big-letter">A</span>ni<span className="big-letter">M</span>ania
         </span>
     );
 }

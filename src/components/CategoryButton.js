@@ -21,7 +21,7 @@ export default function CategoryButton(props) {
 
     return (
         <Card style={{ width: '18rem' }}>
-            <Button id={props.id} variant={cardColor}>
+            <Button href={`/article/${props.id}`} id={props.id} variant={cardColor}>
                 <CategoryIcon category={category} />
                 &nbsp;
                 {props.name}

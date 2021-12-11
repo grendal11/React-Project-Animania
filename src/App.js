@@ -12,8 +12,9 @@ function App() {
     <div className="App">
       <Header />
       <Routes>
-        <Route path="/" element={<Article />} />
+        <Route path="/" element={<Articles />} />
         <Route path="/articles" element={<Articles />} />
+        <Route path="/article/:articleId" element={<Article />} />
         <Route path="/login" element={<Login />} />
       </Routes>
       <main className="app-main">

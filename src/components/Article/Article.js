@@ -1,3 +1,5 @@
+import { useState, useEffect } from 'react';
+import { useParams } from 'react-router-dom';
 import { Card, Image } from 'react-bootstrap';
 import { Row, Col } from 'react-bootstrap';
 import ArticlePart from './ArticlePart'
@@ -5,8 +7,22 @@ import CategoryIcon from '../CategoryIcon';
 import './Article.css';
 
 function Article() {
+    const { articleId } = useParams();
 
-    let category = "success";
+    const [article, setArticle] = useState([]);
+
+    useEffect(() => {
+        fetch(`http://localhost:3030/jsonstore/articles/${articleId}`)
+            .then(res => res.json())
+            .then(res => {
+                console.log(res);
+                setArticle(res);
+            });
+    }, []);
+
+    console.log(articleId);
+
+    let category = article.category;
     let color = "success";
     switch (category) {
         case 'water':
@@ -29,20 +45,26 @@ function Article() {
     return (
         <Row className="justify-content-center" xs='auto'>
             <Col className='mt-10' >
-                <br/>
+                <br />
                 <Card border={color} >
                     <Card.Header className={"bg-" + color + " text-white"}>
                         <Card.Title>
-                            <CategoryIcon category={category}/>
+                            <CategoryIcon category={category} />
                             &nbsp;
-                            Лисица
+                            {article.name}
                         </Card.Title>
                     </Card.Header>
                     <Card.Body>
-                        <Image src="https://miau.bg/files/lib/600x350/fox3.jpg" className="article-img" style={{ width: '18rem' }} rounded fluid />
-                        <ArticlePart part={"Максимална възраст"} headValue={"12-14 години"} color={color}/>
-                        <ArticlePart part={"Размери"} text={demoText} color={color} />
-                        <ArticlePart part={"Описание"} text={demoText} color={color} />
+                        <Image src={`${article.imageUrl}`} className="article-img" style={{ width: '18rem' }} rounded fluid />
+                        <ArticlePart part={"Максимална възраст"} headValue={article.maxAge} color={color} />
+                        <ArticlePart part={"Размери"} text={article.size} color={color} />
+                        <ArticlePart part={"Описание"} text={article.text} color={color} />
+                        <ArticlePart part={"Хранене"} text={article.food} color={color} />
+                        {article.canBreed
+                            ? <ArticlePart part={"Отглеждане"} text={article.breeding} color={color} />
+                            : null
+                        }
+                        <ArticlePart part={"Любопитни факти"} text={article.facts} color={color} />
                     </Card.Body>
                 </Card>
             </Col>
