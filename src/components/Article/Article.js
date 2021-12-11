@@ -5,6 +5,7 @@ import { Row, Col } from 'react-bootstrap';
 import ArticlePart from './ArticlePart'
 import CategoryIcon from '../CategoryIcon';
 import './Article.css';
+import { getColor } from '../util';
 
 function Article() {
     const { articleId } = useParams();
@@ -23,25 +24,8 @@ function Article() {
     console.log(articleId);
 
     let category = article.category;
-    let color = "success";
-    switch (category) {
-        case 'water':
-        case 'birds':
-            color = "primary";
-            break;
-
-        case 'reptiles':
-        case 'rodents':
-            color = "secondary";
-            break;
-
-        case 'others':
-            color = "danger";
-            break;
-    }
-
-    let demoText = "Some quick example text to build on the card title and make up the bulk of the card's content. Some quick example text to build on the card title and make up the bulk of the card's content. Some quick example text to build on the card title and make up the bulk of the card's content. Some quick example text to build on the card title and make up the bulk of the card's content.";
-
+    let color = getColor(category);
+    
     return (
         <Row className="justify-content-center" xs='auto'>
             <Col className='mt-10' >
