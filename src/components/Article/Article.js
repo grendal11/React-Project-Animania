@@ -56,15 +56,31 @@ function Article() {
                     </Card.Header>
                     <Card.Body>
                         <Image src={`${article.imageUrl}`} className="article-img" style={{ width: '18rem' }} rounded fluid />
-                        <ArticlePart part={"Максимална възраст"} headValue={article.maxAge} color={color} />
-                        <ArticlePart part={"Размери"} text={article.size} color={color} />
-                        <ArticlePart part={"Описание"} text={article.text} color={color} />
-                        <ArticlePart part={"Хранене"} text={article.food} color={color} />
-                        {article.canBreed
+                        {article.maxAge?.length > 0
+                            ? <ArticlePart part={"Максимална възраст"} headValue={article.maxAge} color={color} />
+                            : null
+                        }
+                        {article.size?.length > 0
+                            ? <ArticlePart part={"Размери"} text={article.size} color={color} />
+                            : null
+                        }
+                        {article.description?.length > 0
+                            ? <ArticlePart part={"Описание"} text={article.description} color={color} />
+                            : null
+                        }
+                        {article.food?.length > 0
+                            ? <ArticlePart part={"Хранене"} text={article.food} color={color} />
+                            : null
+                        }
+                        {article.breeding?.length > 0
                             ? <ArticlePart part={"Отглеждане"} text={article.breeding} color={color} />
                             : null
                         }
-                        <ArticlePart part={"Любопитни факти"} text={article.facts} color={color} />
+                        {article.facts?.length > 0
+                            ? <ArticlePart part={"Любопитни факти"} text={article.facts} color={color} />
+                            : null
+                        }
+
                     </Card.Body>
                 </Card>
             </Col>
