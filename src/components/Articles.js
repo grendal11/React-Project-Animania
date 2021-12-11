@@ -1,21 +1,39 @@
 import CategoryButton from './CategoryButton';
 import { Row, Col } from 'react-bootstrap';
+import { useState, useEffect, Suspense } from 'react';
 
-function Articles(props) {
-    let articles = props.articles;
+function Articles() {
+    const [articles, setArticles] = useState([]);
+
+    useEffect(() => {
+        fetch('http://localhost:3030/jsonstore/articles')
+            .then(res => res.json())
+            .then(res => {
+                console.log(res);
+                console.log(Object.values(res));
+                setArticles(Object.values(res));
+            });
+    }, []);
 
     return (
         <>
             <br />
-            <h2>Налични статии</h2>
-            <br />
-            <Row className="justify-content-center" xs='auto'>
-                {articles.map(x =>
-                    <Col lg='auto' md='auto' sm='auto' className='mt-2'>
-                        <CategoryButton id={x._id} category={x.category} name={x.name} />
-                    </Col>
-                )}
-            </Row>
+            <Suspense fallback={<p>Loading...</p>}>
+                {articles.length > 0
+                    ? <>
+                        <h2>Налични статии</h2>
+                        <br />
+                        <Row className="justify-content-center" xs='auto'>
+                            {articles.map(x =>
+                                <Col lg='auto' md='auto' sm='auto' className='mt-2'>
+                                    <CategoryButton id={x._id} category={x.category} name={x.name} />
+                                </Col>
+                            )}
+                        </Row>
+                    </>
+                    : <h3 className="no-articles">Няма налични статии</h3>
+                }
+            </Suspense>
         </>
     );
 

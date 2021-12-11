@@ -29,6 +29,7 @@ function Article() {
     return (
         <Row className="justify-content-center" xs='auto'>
             <Col className='mt-10' >
+                <br/>
                 <Card border={color} >
                     <Card.Header className={"bg-" + color + " text-white"}>
                         <Card.Title>
