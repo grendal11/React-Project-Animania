@@ -1,7 +1,12 @@
+import { useContext } from 'react';
+import { AuthContext } from '../contexts/AuthContext';
+
 import { Navbar, Container, Nav, NavDropdown } from 'react-bootstrap';
 import Sitelogo from './Sitelogo';
 
 function Header() {
+    const { user } = useContext(AuthContext);
+
     return (
         <Navbar bg="success" variant="dark" expand="lg">
             <Container>
@@ -21,9 +26,10 @@ function Header() {
                         </NavDropdown>
                     </Nav>
                     <Nav className="justify-content-end">
+                        <Nav.Link>{user.email}</Nav.Link>
                         <Nav.Link href="/login">Вход</Nav.Link>
-                        <Nav.Link href="#link1">Регистрация</Nav.Link>
-                        <Nav.Link href="#link2">Изход</Nav.Link>
+                        <Nav.Link href="/register">Регистрация</Nav.Link>
+                        <Nav.Link href="/logout">Изход</Nav.Link>
                     </Nav>
                 </Navbar.Collapse>
             </Container>
