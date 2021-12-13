@@ -2,7 +2,7 @@ import { useContext } from 'react';
 import { AuthContext } from '../contexts/AuthContext';
 
 import { Navbar, Container, Nav, NavDropdown } from 'react-bootstrap';
-import Sitelogo from './Sitelogo';
+import Sitelogo from './Sitelogo/Sitelogo';
 
 function Header() {
     const { user } = useContext(AuthContext);
@@ -21,7 +21,7 @@ function Header() {
                         <Nav.Link href="#link2">Вицове</Nav.Link>
                         <NavDropdown title="Добави" id="basic-nav-dropdown">
                             <NavDropdown.Item href="#action/3.1">Обява</NavDropdown.Item>
-                            <NavDropdown.Item href="#action/3.2">Статия</NavDropdown.Item>
+                            <NavDropdown.Item href="/create/article">Статия</NavDropdown.Item>
                             <NavDropdown.Item href="#action/3.3">Виц</NavDropdown.Item>
                         </NavDropdown>
                     </Nav>

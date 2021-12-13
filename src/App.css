@@ -26,3 +26,22 @@
   color: #61dafb;
 }
 
+.form-container {
+  display: flex;
+  width: 90%;
+  margin: auto;
+}
+
+.form-container Form {
+  width: 90%;  
+  margin: auto;  
+ }
+
+ .form-container .small-element {
+   width: 300px;
+   margin: auto;
+ }
+
+ .text-left {
+    text-align: left;
+ }
