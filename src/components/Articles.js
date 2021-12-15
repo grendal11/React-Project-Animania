@@ -9,8 +9,8 @@ function Articles() {
         fetch('http://localhost:3030/jsonstore/articles')
             .then(res => res.json())
             .then(res => {
-                console.log(res);
-                console.log(Object.values(res));
+                // console.log(res);
+                // console.log(Object.values(res));
                 setArticles(Object.values(res));
             });
     }, []);
