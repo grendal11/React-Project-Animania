@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import useArticleState from '../../hooks/useArticleState';
 import { useParams } from 'react-router-dom';
 import { Card, Image } from 'react-bootstrap';
 import { Row, Col } from 'react-bootstrap';
@@ -9,23 +9,11 @@ import { getColor } from '../util';
 
 function Article() {
     const { articleId } = useParams();
-
-    const [article, setArticle] = useState([]);
-
-    useEffect(() => {
-        fetch(`http://localhost:3030/jsonstore/articles/${articleId}`)
-            .then(res => res.json())
-            .then(res => {
-                console.log(res);
-                setArticle(res);
-            });
-    }, []);
-
-    console.log(articleId);
+    const [article, setArticle] = useArticleState(articleId);
 
     let category = article.category;
     let color = getColor(category);
-    
+
     return (
         <Row className="justify-content-center" xs='auto'>
             <Col className='mt-10' >
