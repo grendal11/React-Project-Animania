@@ -21,7 +21,7 @@ function Header() {
                         <Nav.Link href="#link2">Вицове</Nav.Link>
                         <NavDropdown title="Добави" id="basic-nav-dropdown">
                             <NavDropdown.Item href="#action/3.1">Обява</NavDropdown.Item>
-                            <NavDropdown.Item href="/create/article">Статия</NavDropdown.Item>
+                            <NavDropdown.Item href="/article/create">Статия</NavDropdown.Item>
                             <NavDropdown.Item href="#action/3.3">Виц</NavDropdown.Item>
                         </NavDropdown>
                     </Nav>

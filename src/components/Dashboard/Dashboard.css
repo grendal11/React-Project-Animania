@@ -1,0 +1,22 @@
+.dashoard-article-card  {
+    width: 48%;
+    min-width: 500px;
+    height: 300px;
+    margin: auto;
+    text-align: left;
+}
+
+.dashoard-article-card .small-image {
+    margin-right: 10px;
+    width: 200px;
+    border-radius: 10px;
+    float: left;
+}
+
+.articles-container {
+    display: flex;
+    width: 90%;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+    margin: auto;
+}

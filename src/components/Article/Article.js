@@ -1,9 +1,12 @@
-import useArticleState from '../../hooks/useArticleState';
 import { useParams } from 'react-router-dom';
 import { Card, Image } from 'react-bootstrap';
 import { Row, Col } from 'react-bootstrap';
+
+import useArticleState from '../../hooks/useArticleState';
+
 import ArticlePart from './ArticlePart'
 import CategoryIcon from '../CategoryIcon';
+
 import './Article.css';
 import { getColor } from '../util';
 

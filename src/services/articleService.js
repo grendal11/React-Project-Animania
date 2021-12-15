@@ -18,7 +18,18 @@ export const create = async (articleData, token) => {
 
 export const getOne = (articleId) => {
     return fetch(`${baseUrl}/articles/${articleId}`)
-        .then(res => res.json())
+        .then(res => res.json());
+};
+
+export const getAll = () => {
+    return fetch(`${baseUrl}/articles/`)
+        .then(res => res.json());
+};
+
+export const getLast = async () => {
+    let result = await fetch(`${baseUrl}/articles/`)
+        .then(res => res.json());
+    return Object.values(result).slice(-2);
 };
 
 

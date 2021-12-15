@@ -5,10 +5,11 @@ import useLocalStorage from './hooks/useLocalStorage';
 
 import Sitelogo from './components/Sitelogo/Sitelogo';
 import Header from './components/Header';
+import Dashboard from './components/Dashboard/Dashboard';
 import Articles from './components/Articles';
 import Article from './components/Article/Article';
-import CreateArticle from './components/CreateArticle';
-import EditArticle from './components/EditArticle';
+import CreateArticle from './components/Article/CreateArticle';
+import EditArticle from './components/Article/EditArticle';
 import Login from './components/Login';
 import Register from './components/Register';
 import Logout from './components/Logout';
@@ -39,18 +40,18 @@ function App() {
         <Header />
         <main className="app-main">
           <Routes>
-            <Route path="/" element={<Articles />} />
+            <Route path="/" element={<Dashboard />} />
             <Route path="/articles" element={<Articles />} />
-            <Route path="/article/:articleId" element={<Article />} />
-            <Route path="/article/:articleId/edit" element={<EditArticle />} />
-            {/* <Route element={<GuardedRoute />}> */}
-            <Route path="/create" >
-              <Route path="article" element={<CreateArticle />} />
-            </Route>
-            {/* </Route> */}
-            <Route path="/login" element={<Login />} />
-            <Route path="/register" element={<Register />} />
-            <Route path="/logout" element={<Logout />} />
+              {/* <Route element={<GuardedRoute />}> */}
+              <Route path="/article" >
+                <Route path="create" element={<CreateArticle />} />
+                <Route path=":articleId" element={<Article />} />
+                <Route path=":articleId/edit" element={<EditArticle />} />
+              </Route>
+              {/* </Route> */}
+              <Route path="/login" element={<Login />} />
+              <Route path="/register" element={<Register />} />
+              <Route path="/logout" element={<Logout />} />
           </Routes>
         </main>
         <footer className="App-footer">

@@ -1,3 +1,5 @@
+import * as articleService from '../services/articleService';
+
 import CategoryButton from './CategoryButton';
 import { Row, Col } from 'react-bootstrap';
 import { useState, useEffect, Suspense } from 'react';
@@ -6,11 +8,8 @@ function Articles() {
     const [articles, setArticles] = useState([]);
 
     useEffect(() => {
-        fetch('http://localhost:3030/jsonstore/articles')
-            .then(res => res.json())
+        articleService.getAll()
             .then(res => {
-                // console.log(res);
-                // console.log(Object.values(res));
                 setArticles(Object.values(res));
             });
     }, []);

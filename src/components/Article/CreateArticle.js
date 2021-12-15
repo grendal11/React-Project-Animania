@@ -1,24 +1,20 @@
-import { useNavigate, useParams } from 'react-router-dom';
-import { useState, useContext, useEffect } from 'react';
-import useArticleState from '../hooks/useArticleState';
-import { AuthContext } from '../contexts/AuthContext';
-import * as articleService from '../services/articleService';
+import { useNavigate } from 'react-router-dom';
+import { useState, useContext } from 'react';
+import { AuthContext } from '../../contexts/AuthContext';
+import * as articleService from '../../services/articleService';
 import { Form, Button } from 'react-bootstrap';
 
-function EditArticle() {
-    const { articleId } = useParams();
-    const [article, setArticle] = useArticleState(articleId);
+function CreateArticle() {
+    const [breed, setBreed] = useState(false);
 
-    const [breed, setBreed] = useState(article.canBreed);
-
-    const onSwitchBreed = (e) => {
+    const onSwitchBreed = (e) => {    
         setBreed(!breed);
     }
 
     const { user } = useContext(AuthContext);;
     const navigate = useNavigate();
 
-    const onArticleEdit = (e) => {
+    const onArticleCreate = (e) => {
         e.preventDefault();
         let formData = new FormData(e.currentTarget);
 
@@ -33,19 +29,18 @@ function EditArticle() {
         let breeding = formData.get('breeding');
         let facts = formData.get('facts');
 
-        articleService.update(article._id,
-            {
-                name,
-                category,
-                maxAge,
-                imageUrl,
-                size,
-                description,
-                food,
-                canBreed,
-                breeding,
-                facts,
-            }, user.accessToken)
+        articleService.create({
+            name,
+            category,
+            maxAge,
+            imageUrl,
+            size,
+            description,
+            food,
+            canBreed,
+            breeding,
+            facts,
+        }, user.accessToken)
             .then(result => {
                 navigate('/articles');
             })
@@ -53,18 +48,19 @@ function EditArticle() {
 
     return (
         <section className="form-container" >
-            <Form onSubmit={onArticleEdit} method="POST">
+            <Form onSubmit={onArticleCreate} method="POST">
                 <br />
-                <h2>Редактиране на статия</h2>
+                <h2>Нова статия</h2>
                 <br />
                 <Form.Group className="mb-3 small-element">
                     <Form.Label>Име на животно</Form.Label>
-                    <Form.Control type="text" name="name" id="name" defaultValue={article.name} placeholder="Име на животно" />
+                    <Form.Control type="text" name="name" id="name" placeholder="Име на животно" />
                 </Form.Group>
 
                 <Form.Group className="mb-3 small-element">
                     <Form.Label>Категория</Form.Label>
-                    <Form.Select name="category" id="category" defaultValue={article.category}>
+                    <Form.Select name="category" id="category">
+                        <option >Изберете</option>
                         <option value="dogs">Кучета</option>
                         <option value="cats">Котки</option>
                         <option value="water">Водни</option>
@@ -78,27 +74,27 @@ function EditArticle() {
 
                 <Form.Group className="mb-3 small-element">
                     <Form.Label>Максимална възраст</Form.Label>
-                    <Form.Control type="text" name="maxAge" id="maxAge" defaultValue={article.maxAge} placeholder="12-14 години" />
+                    <Form.Control type="text" name="maxAge" id="maxAge" placeholder="12-14 години" />
                 </Form.Group>
 
                 <Form.Group className="mb-3">
                     <Form.Label>Изображение</Form.Label>
-                    <Form.Control type="text" name="imageUrl" id="imageUrl" defaultValue={article.imageUrl} placeholder="https://..." />
+                    <Form.Control type="text" name="imageUrl" id="imageUrl" placeholder="https://..." />
                 </Form.Group>
 
                 <Form.Group className="mb-3">
                     <Form.Label>Размери</Form.Label>
-                    <Form.Control as="textarea" rows={3} name="size" id="size" defaultValue={article.size} placeholder="Височина, дължина, тегло ..." />
+                    <Form.Control as="textarea" rows={3} name="size" id="size" placeholder="Височина, дължина, тегло ..." />
                 </Form.Group>
 
                 <Form.Group className="mb-3">
                     <Form.Label>Описание</Form.Label>
-                    <Form.Control as="textarea" rows={3} name="description" id="description" defaultValue={article.description} placeholder="Описание на животното ..." />
+                    <Form.Control as="textarea" rows={3} name="description" id="description" placeholder="Описание на животното ..." />
                 </Form.Group>
 
                 <Form.Group className="mb-3">
                     <Form.Label>Хранене</Form.Label>
-                    <Form.Control as="textarea" rows={3} name="food" id="food" defaultValue={article.food} placeholder="Описание ..." />
+                    <Form.Control as="textarea" rows={3} name="food" id="food" placeholder="Описание ..." />
                 </Form.Group>
 
                 <Form.Group className="mb-3" id="canBreed">
@@ -107,22 +103,21 @@ function EditArticle() {
                         label="Подходящо за отглеждане"
                         name="canBreed"
                         className="text-left"
-                        defaultChecked={article.canBreed ? "On" : null}                    
                         onChange={onSwitchBreed}
                     />
                 </Form.Group>
 
-                { (typeof(breed) == "undefined" ? true : breed) ?
+                {breed ?
                     <Form.Group className="mb-3">
                         <Form.Label>Отглеждане</Form.Label>
-                        <Form.Control as="textarea" rows={3} defaultValue={article.breeding} name="breeding" id="breeding" placeholder="Описание ..." />
+                        <Form.Control as="textarea" rows={3} name="breeding" id="breeding" placeholder="Описание ..." />
                     </Form.Group>
                     : null
                 }
 
                 <Form.Group className="mb-3">
                     <Form.Label>Любопитни факти</Form.Label>
-                    <Form.Control as="textarea" rows={3} name="facts" id="facts" defaultValue={article.facts} placeholder="Описание ..." />
+                    <Form.Control as="textarea" rows={3} name="facts" id="facts" placeholder="Описание ..." />
                 </Form.Group>
 
                 <Button variant="success" type="submit">
@@ -133,4 +128,4 @@ function EditArticle() {
     );
 }
 
-export default EditArticle;
+export default CreateArticle;
