@@ -19,17 +19,28 @@ function Header() {
                         <Nav.Link href="#home">Обяви</Nav.Link>
                         <Nav.Link href="/articles">Статии</Nav.Link>
                         <Nav.Link href="#link2">Вицове</Nav.Link>
-                        <NavDropdown title="Добави" id="basic-nav-dropdown">
-                            <NavDropdown.Item href="#action/3.1">Обява</NavDropdown.Item>
-                            <NavDropdown.Item href="/article/create">Статия</NavDropdown.Item>
-                            <NavDropdown.Item href="#action/3.3">Виц</NavDropdown.Item>
-                        </NavDropdown>
+                        {user.email != ""
+                            ? <>
+                                <NavDropdown title="Добави" id="basic-nav-dropdown">
+                                    <NavDropdown.Item href="#action/3.1">Обява</NavDropdown.Item>
+                                    <NavDropdown.Item href="/article/create">Статия</NavDropdown.Item>
+                                    <NavDropdown.Item href="#action/3.3">Виц</NavDropdown.Item>
+                                </NavDropdown>
+                            </>
+                            : null
+                        }
                     </Nav>
                     <Nav className="justify-content-end">
-                        <Nav.Link>{user.email}</Nav.Link>
-                        <Nav.Link href="/login">Вход</Nav.Link>
-                        <Nav.Link href="/register">Регистрация</Nav.Link>
-                        <Nav.Link href="/logout">Изход</Nav.Link>
+                        {user.email != ""
+                            ? <>
+                                <Nav.Link>{user.email}</Nav.Link>
+                                <Nav.Link href="/logout">Изход</Nav.Link>
+                            </>
+                            : <>
+                                <Nav.Link href="/login">Вход</Nav.Link>
+                                <Nav.Link href="/register">Регистрация</Nav.Link>
+                            </>
+                        }
                     </Nav>
                 </Navbar.Collapse>
             </Container>

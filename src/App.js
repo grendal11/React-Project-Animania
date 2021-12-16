@@ -9,6 +9,7 @@ import Dashboard from './components/Dashboard/Dashboard';
 import Articles from './components/Articles';
 import Article from './components/Article/Article';
 import CreateArticle from './components/Article/CreateArticle';
+import GuardedRoute from './components/Common/GuardedRoute';
 import EditArticle from './components/Article/EditArticle';
 import Login from './components/Login';
 import Register from './components/Register';
@@ -42,16 +43,17 @@ function App() {
           <Routes>
             <Route path="/" element={<Dashboard />} />
             <Route path="/articles" element={<Articles />} />
-              {/* <Route element={<GuardedRoute />}> */}
-              <Route path="/article" >
+            <Route path="/article" >
+              <Route path=":articleId" element={<Article />} />
+              <Route element={<GuardedRoute />}>
                 <Route path="create" element={<CreateArticle />} />
-                <Route path=":articleId" element={<Article />} />
                 <Route path=":articleId/edit" element={<EditArticle />} />
+                <Route path=":articleId/delete" />
               </Route>
-              {/* </Route> */}
-              <Route path="/login" element={<Login />} />
-              <Route path="/register" element={<Register />} />
-              <Route path="/logout" element={<Logout />} />
+            </Route>
+            <Route path="/login" element={<Login />} />
+            <Route path="/register" element={<Register />} />
+            <Route path="/logout" element={<Logout />} />
           </Routes>
         </main>
         <footer className="App-footer">

@@ -38,11 +38,12 @@ export const logout = (token) => {
 };
 
 export const getUser = () => {
-    let username = localStorage.getItem('username');
+    let user = localStorage.getItem('user');
 
-    return username;
+    return JSON.parse(user);
 };
 
 export const isAuthenticated = () => {
-    return Boolean(getUser())
+    
+    return getUser().email != "";
 };

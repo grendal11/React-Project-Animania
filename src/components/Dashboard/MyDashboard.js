@@ -11,8 +11,9 @@ function MyDashboard() {
     useEffect(() => {
         articleService.getAll()
             .then(res => {
-                console.log(res);
-                setArticles(Object.values(res));
+                let own = Object.values(res).filter(a => a.ownerId == user._id);    
+                            
+                setArticles(own);
             });
     }, []);
 

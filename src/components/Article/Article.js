@@ -19,6 +19,8 @@ function Article() {
     const [article, setArticle] = useArticleState(articleId);
 
     const { user } = useContext(AuthContext);
+    const owner = user._id == article.ownerId;
+
     const navigate = useNavigate();
 
     let category = article.category;
@@ -86,10 +88,16 @@ function Article() {
                     <div className="article-down-buttons">
                         <div variant="primary-outline" href={`/article/${articleId}/like`} className="text-success likes"><i className="fas fa-thumbs-up"></i>Харесвания (15)</div>
                         <Button variant="primary-outline" href={`/article/${articleId}/comments`} className="text-secondary"><i class="far fa-comments"></i>Коментари (23)</Button>
-                        <Button variant="primary-outline" href={`/article/${articleId}/comment`} className="text-primary"><i class="far fa-comment"></i>Добави коментар</Button>
-                        <Button variant="primary-outline" href={`/article/${articleId}/like`} className="text-success"><i className="fas fa-thumbs-up"></i>Харесай</Button>
-                        <Button variant="primary-outline" href={`/article/${articleId}/edit`} className="text-secondary"><i class="fas fa-edit"></i>Редактиране</Button>
-                        <Button variant="danger-outline" href="#" className="text-danger" onClick={handleShow}><i class="fas fa-trash-alt"></i>Изтриване</Button>
+                        {owner
+                            ? <>
+                                <Button variant="danger-outline" href="#" className="text-danger" onClick={handleShow}><i class="fas fa-trash-alt"></i>Изтриване</Button>
+                                <Button variant="primary-outline" href={`/article/${articleId}/edit`} className="text-secondary"><i class="fas fa-edit"></i>Редактиране</Button>
+                            </>
+                            : <>
+                                <Button variant="primary-outline" href={`/article/${articleId}/comment`} className="text-primary"><i class="far fa-comment"></i>Добави коментар</Button>
+                                <Button variant="primary-outline" href={`/article/${articleId}/like`} className="text-success"><i className="fas fa-thumbs-up"></i>Харесай</Button>
+                            </>
+                        }
                     </div>
                 </Col>
             </Row>
