@@ -1,6 +1,6 @@
 .dashoard-article-card  {
     width: 48%;
-    min-width: 500px;
+    min-width: 420px;
     height: 300px;
     margin: auto;
     text-align: left;
@@ -8,9 +8,14 @@
 
 .dashoard-article-card .small-image {
     margin-right: 10px;
-    width: 200px;
+    width: 180px;
     border-radius: 10px;
     float: left;
+}
+
+.dashboard-my-article-card {
+    width: 90%;
+    text-align: left;
 }
 
 .articles-container {
@@ -19,4 +24,14 @@
     flex-wrap: wrap;
     justify-content: space-evenly;
     margin: auto;
+}
+
+.article-card-buttons {
+    float: right;
+}
+
+.article-stats {
+    display: inline;
+    align-items: center;
+    margin-left: 10px;
 }
