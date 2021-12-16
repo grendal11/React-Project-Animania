@@ -15,3 +15,12 @@
     padding: 10px;
     text-align: left;
 }
+
+.article-down-buttons i {
+    margin-right: 5px;
+}
+
+.likes {
+    display: inline;
+    vertical-align: middle;
+}
