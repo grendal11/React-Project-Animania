@@ -35,3 +35,7 @@
     align-items: center;
     margin-left: 10px;
 }
+
+.article-stats span {
+    margin-left: 10px;
+}
