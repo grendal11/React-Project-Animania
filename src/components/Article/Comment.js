@@ -1,21 +1,37 @@
-import { Card, Button, Image } from 'react-bootstrap';
-import CategoryIcon from '../../CategoryIcon';
-import '../Dashboard.css';
+import { AuthContext } from '../../contexts/AuthContext';
+import { useContext } from 'react';
+import { useNavigate } from 'react-router-dom';
 
-function Comment(props) {
+import * as commentService from '../../services/commentService';
+
+import { Card, Button } from 'react-bootstrap';
+
+
+function Comment({ comment, color }) {
+    const { user } = useContext(AuthContext);
+    const navigate = useNavigate();
+
+    const deleteHandler = (e) => {
+        e.preventDefault();
+
+        commentService.remove(comment._id, user.accessToken)
+            .then(() => {
+                navigate(`/article/${comment.articleId}`);
+            });
+     };
 
     return (
-        <Card className="dashoard-article-card" border="secondary">
-            <Card.Header className="bg-secondary text-white text-bold">
-                {/* {props.name} */} Анонимен
+        <Card className={"comment-card border-" + color} >
+            <Card.Header className="text-black text-bold">
+                {comment.name}
             </Card.Header>
             <Card.Body>
-                <Card.Title>Категория: </Card.Title>
                 <Card.Text>
-                    текста
+                    {comment.comment}
+                    {comment.ownerId == user?._id
+                        ? <Button variant="danger-outline" size="sm" href="#" onClick={deleteHandler} className="text-danger button-right"><i class="fas fa-times"></i> &nbsp; Изтрий</Button>
+                        : null}
                 </Card.Text>
-               <Button variant="secondary" size="sm" href={`/article/${props._id}`}>Виж повече</Button>
-               
             </Card.Body>
         </Card>
     );

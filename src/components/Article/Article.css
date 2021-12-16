@@ -24,3 +24,7 @@
     display: inline;
     vertical-align: middle;
 }
+
+.comment-card {
+    text-align: left;
+}

@@ -10,6 +10,7 @@ import * as articleService from '../../services/articleService';
 import ArticlePart from './ArticlePart'
 import CategoryIcon from '../CategoryIcon';
 import ConfirmDialog from '../Common/ConfirmDialog';
+import ArticleComments from './ArticleComments';
 
 import './Article.css';
 import { getColor } from '../util';
@@ -17,6 +18,14 @@ import { getColor } from '../util';
 function Article() {
     const { articleId } = useParams();
     const [article, setArticle] = useArticleState(articleId);
+
+    const [getComments, setGetComments] = useState(false);
+
+    const commentShowHandler = (e) => {
+        e.preventDefault();
+
+        setGetComments(true);
+    }
 
     const { user } = useContext(AuthContext);
     const owner = user._id == article.ownerId;
@@ -85,9 +94,13 @@ function Article() {
                             }
                         </Card.Body>
                     </Card>
+                    {getComments
+                        ? <ArticleComments articleId={articleId} color={color}/>
+                        : null
+                    }
                     <div className="article-down-buttons">
                         <div variant="primary-outline" href={`/article/${articleId}/like`} className="text-success likes"><i className="fas fa-thumbs-up"></i>Харесвания (15)</div>
-                        <Button variant="primary-outline" href={`/article/${articleId}/comments`} className="text-secondary"><i class="far fa-comments"></i>Коментари (23)</Button>
+                        <Button variant="primary-outline" href="#" onClick={commentShowHandler} className="text-secondary"><i class="far fa-comments"></i>Коментари ({article.count})</Button>
                         {owner
                             ? <>
                                 <Button variant="danger-outline" href="#" className="text-danger" onClick={handleShow}><i class="fas fa-trash-alt"></i>Изтриване</Button>

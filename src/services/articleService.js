@@ -1,5 +1,8 @@
+import * as commentService from './commentService';
+
 const baseUrl = 'http://localhost:3030/jsonstore';   //free
 //const baseUrl = 'http://localhost:3030/data';
+
 
 export const create = async (articleData, token) => {
     let response = await fetch(`${baseUrl}/articles`, {
@@ -16,9 +19,13 @@ export const create = async (articleData, token) => {
     return result;
 };
 
-export const getOne = (articleId) => {
-    return fetch(`${baseUrl}/articles/${articleId}`)
+export const getOne = async (articleId) => {
+    let count = await commentService.getCountByArticle(articleId);
+
+    let article = await fetch(`${baseUrl}/articles/${articleId}`)
         .then(res => res.json());
+        
+    return { ...article, count:count };
 };
 
 export const getAll = () => {
