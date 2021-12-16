@@ -93,10 +93,12 @@ function Article() {
                                 <Button variant="danger-outline" href="#" className="text-danger" onClick={handleShow}><i class="fas fa-trash-alt"></i>Изтриване</Button>
                                 <Button variant="primary-outline" href={`/article/${articleId}/edit`} className="text-secondary"><i class="fas fa-edit"></i>Редактиране</Button>
                             </>
-                            : <>
-                                <Button variant="primary-outline" href={`/article/${articleId}/comment`} className="text-primary"><i class="far fa-comment"></i>Добави коментар</Button>
-                                <Button variant="primary-outline" href={`/article/${articleId}/like`} className="text-success"><i className="fas fa-thumbs-up"></i>Харесай</Button>
-                            </>
+                            : user.email != ""
+                                ? <>
+                                    <Button variant="primary-outline" href={`/article/${articleId}/like`} className="text-success"><i className="fas fa-thumbs-up"></i>Харесай</Button>
+                                    <Button variant="primary-outline" href={`/article/${articleId}/comment`} className="text-primary"><i class="far fa-comment"></i>Добави коментар</Button>
+                                </>
+                                : null
                         }
                     </div>
                 </Col>

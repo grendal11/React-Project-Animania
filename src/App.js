@@ -10,11 +10,13 @@ import Articles from './components/Articles';
 import Article from './components/Article/Article';
 import CreateArticle from './components/Article/CreateArticle';
 import GuardedRoute from './components/Common/GuardedRoute';
+import GuardedOwnerRoute from './components/Common/GuardedOwnerRoute';
 import EditArticle from './components/Article/EditArticle';
 import Login from './components/Login';
 import Register from './components/Register';
 import Logout from './components/Logout';
 import './App.css';
+import NotAuthorized from './components/Common/NotAuthorized';
 
 const initialAuthState = {
   _id: '',
@@ -47,6 +49,8 @@ function App() {
               <Route path=":articleId" element={<Article />} />
               <Route element={<GuardedRoute />}>
                 <Route path="create" element={<CreateArticle />} />
+              </Route>
+              <Route element={<GuardedOwnerRoute />}>
                 <Route path=":articleId/edit" element={<EditArticle />} />
                 <Route path=":articleId/delete" />
               </Route>
@@ -54,6 +58,7 @@ function App() {
             <Route path="/login" element={<Login />} />
             <Route path="/register" element={<Register />} />
             <Route path="/logout" element={<Logout />} />
+            <Route path="/notAuthorized" element={<NotAuthorized />} />
           </Routes>
         </main>
         <footer className="App-footer">
