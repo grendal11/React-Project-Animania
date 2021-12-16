@@ -4,6 +4,7 @@ import { Card, Button, Modal } from 'react-bootstrap';
 import { AuthContext } from '../../../contexts/AuthContext';
 import * as articleService from '../../../services/articleService';
 import CategoryIcon from '../../CategoryIcon';
+import ConfirmDialog from '../../Common/ConfirmDialog';
 import '../Dashboard.css';
 
 function MyArticleCard(props) {
@@ -32,19 +33,7 @@ function MyArticleCard(props) {
 
     return (
         <>
-            <Modal show={showDeleteDialog} onHide={handleClose}>
-                <Modal.Header closeButton>
-                    <Modal.Title>Сигурни ли сте, че искате да изтриете статията?</Modal.Title>
-                </Modal.Header>
-                <Modal.Footer>
-                    <Button variant="danger" onClick={deleteHandler}>
-                        Изтриване
-                    </Button>
-                    <Button variant="secondary" onClick={handleClose}>
-                        Отказ
-                    </Button>
-                </Modal.Footer>
-            </Modal>
+            <ConfirmDialog show={showDeleteDialog} onClose={handleClose} onSave={deleteHandler} />
             <Card border="secondary" className="dashboard-my-article-card">
                 <Card.Header className="bg-outline-secondary text-dark text-bold">
                     <CategoryIcon category={category} />

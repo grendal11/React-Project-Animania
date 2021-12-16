@@ -11,7 +11,7 @@ function CreateArticle() {
         setBreed(!breed);
     }
 
-    const { user } = useContext(AuthContext);;
+    const { user } = useContext(AuthContext);
     const navigate = useNavigate();
 
     const onArticleCreate = (e) => {
@@ -28,6 +28,7 @@ function CreateArticle() {
         let canBreed = formData.get('canBreed') == "on" ? true : false;
         let breeding = formData.get('breeding');
         let facts = formData.get('facts');
+        let ownerId = user._id;
 
         articleService.create({
             name,
@@ -40,6 +41,7 @@ function CreateArticle() {
             canBreed,
             breeding,
             facts,
+            ownerId
         }, user.accessToken)
             .then(result => {
                 navigate('/articles');
