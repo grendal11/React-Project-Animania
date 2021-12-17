@@ -10,7 +10,7 @@ import * as articleService from '../../services/articleService';
 import ArticlePart from './ArticlePart'
 import CategoryIcon from '../CategoryIcon';
 import ConfirmDialog from '../Common/ConfirmDialog';
-import ArticleComments from './ArticleComments';
+import ArticleComments from '../Comment/ArticleComments';
 
 import './Article.css';
 import { getColor } from '../util';

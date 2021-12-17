@@ -16,6 +16,7 @@ function Comment({ comment, color }) {
 
         commentService.remove(comment._id, user.accessToken)
             .then(() => {
+                let path = `/article/${comment.articleId}`;
                 navigate(`/article/${comment.articleId}`);
             });
      };
@@ -29,7 +30,7 @@ function Comment({ comment, color }) {
                 <Card.Text>
                     {comment.comment}
                     {comment.ownerId == user?._id
-                        ? <Button variant="danger-outline" size="sm" href="#" onClick={deleteHandler} className="text-danger button-right"><i class="fas fa-times"></i> &nbsp; Изтрий</Button>
+                        ? <Button variant="danger-outline" size="sm" href={`/article/${comment.articleId}/delete/${comment._id}`} className="text-danger button-right"><i class="fas fa-times"></i> &nbsp; Изтрий</Button>
                         : null}
                 </Card.Text>
             </Card.Body>

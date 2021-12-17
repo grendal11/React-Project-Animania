@@ -1,5 +1,5 @@
 import Comment from './Comment';
-import { useState, useContext, useEffect } from 'react';
+import { useState,  useEffect } from 'react';
 
 import * as commentService from '../../services/commentService';
 

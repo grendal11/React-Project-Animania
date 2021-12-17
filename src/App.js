@@ -8,8 +8,9 @@ import Header from './components/Header';
 import Dashboard from './components/Dashboard/Dashboard';
 import Articles from './components/Articles';
 import Article from './components/Article/Article';
-import ArticleComments from './components/Article/ArticleComments';
-import AddComment from './components/Article/AddComment';
+import ArticleComments from './components/Comment/ArticleComments';
+import AddComment from './components/Comment/AddComment';
+import DeleteComment from './components/Comment/DeleteComment';
 import CreateArticle from './components/Article/CreateArticle';
 import GuardedRoute from './components/Common/GuardedRoute';
 import GuardedOwnerRoute from './components/Common/GuardedOwnerRoute';
@@ -53,6 +54,7 @@ function App() {
               <Route element={<GuardedRoute />}>
                 <Route path="create" element={<CreateArticle />} />
                 <Route path=":articleId/comment" element={<AddComment />} />  
+                <Route path=":articleId/delete/:commentId" element={<DeleteComment />} />  
               </Route>
               <Route element={<GuardedOwnerRoute />}>
                 <Route path=":articleId/edit" element={<EditArticle />} />
