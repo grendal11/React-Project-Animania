@@ -24,7 +24,7 @@ const navigate = useNavigate();
             .then((authData) => {
                 login(authData);
 
-                navigate('/articles');
+                navigate('/');
             })
             .catch(err => {
                 // TODO: show notification

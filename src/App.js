@@ -5,16 +5,16 @@ import useLocalStorage from './hooks/useLocalStorage';
 
 import Sitelogo from './components/Sitelogo/Sitelogo';
 import Header from './components/Header';
+import GuardedRoute from './components/Common/GuardedRoute';
 import Dashboard from './components/Dashboard/Dashboard';
-import Articles from './components/Articles';
+import Articles from './components/Articles/Articles';
 import Article from './components/Article/Article';
+import CreateArticle from './components/Article/CreateArticle';
+import EditArticle from './components/Article/EditArticle';
 import ArticleComments from './components/Comment/ArticleComments';
 import AddComment from './components/Comment/AddComment';
 import DeleteComment from './components/Comment/DeleteComment';
-import CreateArticle from './components/Article/CreateArticle';
-import GuardedRoute from './components/Common/GuardedRoute';
-import GuardedOwnerRoute from './components/Common/GuardedOwnerRoute';
-import EditArticle from './components/Article/EditArticle';
+import AddJoke from './components/Joke/AddJoke';
 import Login from './components/Login';
 import Register from './components/Register';
 import Logout from './components/Logout';
@@ -53,11 +53,17 @@ function App() {
               <Route path=":articleId/comments" element={<ArticleComments />} />
               <Route element={<GuardedRoute />}>
                 <Route path="create" element={<CreateArticle />} />
-                <Route path=":articleId/comment" element={<AddComment />} />  
-                <Route path=":articleId/delete/:commentId" element={<DeleteComment />} />  
+                <Route path=":articleId/comment" element={<AddComment />} />
+                <Route path=":articleId/delete/:commentId" element={<DeleteComment />} />
                 <Route path=":articleId/edit" element={<EditArticle />} />
                 <Route path=":articleId/delete" />
               </Route>
+              {/* <Route element={<GuardedOwnerRoute />}>
+              </Route> */}
+            </Route>
+            <Route path="/joke" >
+              {/* <Route path=":jokeId" element={<Joke />} /> */}
+              <Route path="create" element={<AddJoke />} />
             </Route>
             <Route path="/login" element={<Login />} />
             <Route path="/register" element={<Register />} />

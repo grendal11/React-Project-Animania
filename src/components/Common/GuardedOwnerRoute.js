@@ -1,11 +1,33 @@
-
+import { useState, useEffect, useContext, Suspense } from 'react';
 import { Navigate, Outlet, useParams } from 'react-router-dom';
-import { getUser } from '../../services/authService';
+import { AuthContext } from '../../contexts/AuthContext';
+import * as articleService from '../../services/articleService';
 
-const GuardedOwnerRoute = () => {
+const GuardedOwnerRoute = async () => {
     const { articleId } = useParams();
+    const { user } = useContext(AuthContext);
+    const [owner, setOwner] = useState("");
 
-    return getUser()._id == articleId ? <Outlet /> : <Navigate to="/notAuthorized" />
+    useEffect(() => {
+        articleService.getOneNoComments(articleId)
+            .then(res => {
+                console.log(res);
+                setOwner(res.ownerId);
+            })
+    }, "");
+
+    //TODO: not finished
+
+    return (
+        <>
+            <Suspense fallback={<p>Loading...</p>}>
+                {owner != ""
+                    ? user._id == owner ? <Outlet /> : <Navigate to="/notAuthorized" />
+                    : null
+                }
+            </Suspense>
+        </>
+    );
 }
 
 export default GuardedOwnerRoute;

@@ -1,10 +1,11 @@
 import { Card, Button, Image } from 'react-bootstrap';
+
 import CategoryIcon from '../../CategoryIcon';
+import CommentsCount from '../../Stats/CommentsCount';
 import '../Dashboard.css';
 
 function ArticleCard(props) {
     let category = props.category;
-
 
     return (
         <Card className="dashoard-article-card" border="secondary">
@@ -23,7 +24,7 @@ function ArticleCard(props) {
                 <div className="article-stats article-card-buttons">
                     <span variant="success-outline" className="text-danger"><i className="fas fa-thumbs-up"></i> 23</span>
                     &nbsp;
-                    <span variant="success-outline" className="text-success"><i class="far fa-comments"></i> 23</span>
+                    <CommentsCount articleId={props._id}/>
                 </div>
             </Card.Body>
         </Card>

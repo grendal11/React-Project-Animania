@@ -1,6 +1,6 @@
-import CategoryIcon from './CategoryIcon';
+import CategoryIcon from '../CategoryIcon';
 import { Button, Card } from 'react-bootstrap';
-import { getColor } from './util';
+import { getColor } from '../util';
 
 export default function CategoryButton(props) {
     let category = props.category;

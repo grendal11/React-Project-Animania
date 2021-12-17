@@ -19,21 +19,19 @@ export const create = async (articleData, token) => {
     return result;
 };
 
-export const getOwner = async (articleId) => {
-
-    let article = await fetch(`${baseUrl}/articles/${articleId}`)
+export const getOneNoComments = (articleId) => {
+    return fetch(`${baseUrl}/articles/${articleId}`)
         .then(res => res.json());
-        
-    return article.ownerId;
-};
+}
+
 
 export const getOne = async (articleId) => {
     let count = await commentService.getCountByArticle(articleId);
 
     let article = await fetch(`${baseUrl}/articles/${articleId}`)
         .then(res => res.json());
-        
-    return { ...article, count:count };
+
+    return { ...article, count: count };
 };
 
 export const getAll = () => {

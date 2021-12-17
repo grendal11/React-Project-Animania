@@ -1,4 +1,4 @@
-import * as articleService from '../services/articleService';
+import * as articleService from '../../services/articleService';
 
 import CategoryButton from './CategoryButton';
 import { Row, Col } from 'react-bootstrap';

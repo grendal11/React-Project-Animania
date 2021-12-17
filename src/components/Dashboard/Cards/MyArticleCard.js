@@ -1,10 +1,11 @@
 import { useState, useContext } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { Card, Button, Modal } from 'react-bootstrap';
+import { Card, Button } from 'react-bootstrap';
 import { AuthContext } from '../../../contexts/AuthContext';
 import * as articleService from '../../../services/articleService';
 import CategoryIcon from '../../CategoryIcon';
 import ConfirmDialog from '../../Common/ConfirmDialog';
+import CommentsCount from '../../Stats/CommentsCount';
 import '../Dashboard.css';
 
 function MyArticleCard(props) {
@@ -42,7 +43,7 @@ function MyArticleCard(props) {
                     <div className="article-stats">
                         <span variant="success-outline" className="text-danger"><i className="fas fa-thumbs-up"></i> 23</span>
                         &nbsp;
-                        <span variant="success-outline" className="text-success"><i class="far fa-comments"></i> 23</span>
+                        <CommentsCount articleId={props._id}/>
                     </div>
                     <div className="article-card-buttons">
                         <Button variant="danger-outline" href="#" className="text-danger" onClick={handleShow}><i class="fas fa-trash-alt"></i></Button>
