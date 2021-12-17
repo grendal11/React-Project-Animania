@@ -15,11 +15,13 @@ import ArticleComments from './components/Comment/ArticleComments';
 import AddComment from './components/Comment/AddComment';
 import DeleteComment from './components/Comment/DeleteComment';
 import AddJoke from './components/Joke/AddJoke';
+import DeleteJoke from './components/Joke/DeleteJoke';
 import Login from './components/Login';
 import Register from './components/Register';
 import Logout from './components/Logout';
 import './App.css';
 import NotAuthorized from './components/Common/NotAuthorized';
+import JokesList from './components/Joke/JokesList';
 
 const initialAuthState = {
   _id: '',
@@ -61,9 +63,11 @@ function App() {
               {/* <Route element={<GuardedOwnerRoute />}>
               </Route> */}
             </Route>
+            <Route path="/jokes" element={<JokesList />} />
             <Route path="/joke" >
               {/* <Route path=":jokeId" element={<Joke />} /> */}
               <Route path="create" element={<AddJoke />} />
+              <Route path=":jokeId/delete" element={<DeleteJoke />} />
             </Route>
             <Route path="/login" element={<Login />} />
             <Route path="/register" element={<Register />} />

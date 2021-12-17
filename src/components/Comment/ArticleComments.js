@@ -13,7 +13,7 @@ function ArticleComments(props) {
             });
     }, []);
 
-    //TODO: rerender comments aftere delete
+
     return (
         <>
             <Suspense fallback={<p>Зареждане...</p>}>

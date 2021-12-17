@@ -16,13 +16,13 @@ function Header() {
                 <Navbar.Toggle aria-controls="basic-navbar-nav" />
                 <Navbar.Collapse id="basic-navbar-nav">
                     <Nav className="me-auto">
-                        <Nav.Link href="#home">Обяви</Nav.Link>
+                        {/* <Nav.Link href="#home">Обяви</Nav.Link> */}
                         <Nav.Link href="/articles">Статии</Nav.Link>
-                        <Nav.Link href="#link2">Вицове</Nav.Link>
+                        <Nav.Link href="/jokes">Вицове</Nav.Link>
                         {user.email != ""
                             ? <>
                                 <NavDropdown title="Добави" id="basic-nav-dropdown">
-                                    <NavDropdown.Item href="#action/3.1">Обява</NavDropdown.Item>
+                                    {/* <NavDropdown.Item href="#action/3.1">Обява</NavDropdown.Item> */}
                                     <NavDropdown.Item href="/article/create">Статия</NavDropdown.Item>
                                     <NavDropdown.Item href="/joke/create">Виц</NavDropdown.Item>
                                 </NavDropdown>

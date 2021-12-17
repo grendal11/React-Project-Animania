@@ -18,7 +18,7 @@ function ArticleCard(props) {
                 <Image src={props.imageUrl} fluid className="small-image" />
                 <Card.Title>Категория: {props.category}</Card.Title>
                 <Card.Text>
-                    {props.description.substring(1, 180) + "..."}
+                    {props.description.substring(0, 180) + "..."}
                 </Card.Text>
                 <Button variant="secondary" size="sm" href={`/article/${props._id}`}>Виж повече</Button>
                 <div className="article-stats article-card-buttons">

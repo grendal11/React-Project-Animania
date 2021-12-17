@@ -39,3 +39,8 @@
 .article-stats span {
     margin-left: 10px;
 }
+
+.joke-card {
+    width: 85%;
+    margin: auto;
+}

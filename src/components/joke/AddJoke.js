@@ -12,7 +12,7 @@ function AddJoke() {
         e.preventDefault();
         let formData = new FormData(e.currentTarget);
 
-        let name = formData.get('name');
+        let name = formData.get('name') || "Анонимен";
         let text = formData.get('text');
         let ownerId = user._id;
 
