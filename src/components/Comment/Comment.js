@@ -1,25 +1,11 @@
 import { AuthContext } from '../../contexts/AuthContext';
 import { useContext } from 'react';
-import { useNavigate } from 'react-router-dom';
-
-import * as commentService from '../../services/commentService';
 
 import { Card, Button } from 'react-bootstrap';
 
 
 function Comment({ comment, color }) {
     const { user } = useContext(AuthContext);
-    const navigate = useNavigate();
-
-    const deleteHandler = (e) => {
-        e.preventDefault();
-
-        commentService.remove(comment._id, user.accessToken)
-            .then(() => {
-                let path = `/article/${comment.articleId}`;
-                navigate(`/article/${comment.articleId}`);
-            });
-     };
 
     return (
         <Card className={"comment-card border-" + color} >

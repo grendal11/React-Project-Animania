@@ -55,8 +55,6 @@ function App() {
                 <Route path="create" element={<CreateArticle />} />
                 <Route path=":articleId/comment" element={<AddComment />} />  
                 <Route path=":articleId/delete/:commentId" element={<DeleteComment />} />  
-              </Route>
-              <Route element={<GuardedOwnerRoute />}>
                 <Route path=":articleId/edit" element={<EditArticle />} />
                 <Route path=":articleId/delete" />
               </Route>

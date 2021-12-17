@@ -1,5 +1,5 @@
 import Comment from './Comment';
-import { useState,  useEffect } from 'react';
+import { useState, useEffect, Suspense } from 'react';
 
 import * as commentService from '../../services/commentService';
 
@@ -16,9 +16,11 @@ function ArticleComments(props) {
     //TODO: rerender comments aftere delete
     return (
         <>
-            <br />
-            {comments.map(c => <Comment id={c._id} comment={c} color={props.color} />)}
-            <br />
+            <Suspense fallback={<p>Зареждане...</p>}>
+                <br />
+                {comments.map(c => <Comment id={c._id} comment={c} color={props.color} />)}
+                <br />
+            </Suspense>
         </>
     );
 }

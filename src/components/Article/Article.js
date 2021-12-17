@@ -1,5 +1,5 @@
 import { useParams, useNavigate } from 'react-router-dom';
-import { useState, useContext } from 'react';
+import { useState, useContext, Suspense } from 'react';
 
 import { Card, Image, Row, Col, Button } from 'react-bootstrap';
 
@@ -55,6 +55,7 @@ function Article() {
     return (
         <>
             <ConfirmDialog show={showDeleteDialog} onClose={handleClose} onSave={deleteHandler} />
+            <Suspense fallback={<p>Зареждане...</p>}>
             <Row className="justify-content-center" xs='auto'>
                 <Col className='mt-10' >
                     <br />
@@ -67,7 +68,7 @@ function Article() {
                             </Card.Title>
                         </Card.Header>
                         <Card.Body>
-                            <Image src={`${article.imageUrl}`} className="article-img" style={{ width: '18rem' }} rounded fluid />
+                            <Image src={article.imageUrl ? `${article.imageUrl}` : "https://static.thenounproject.com/png/3674277-200.png"} className="article-img" style={{ width: '18rem' }} rounded fluid />
                             {article.maxAge?.length > 0
                                 ? <ArticlePart part={"Максимална възраст"} headValue={article.maxAge} color={color} />
                                 : null
@@ -94,10 +95,12 @@ function Article() {
                             }
                         </Card.Body>
                     </Card>
+
                     {getComments
                         ? <ArticleComments articleId={articleId} color={color}/>
                         : null
                     }
+
                     <div className="article-down-buttons">
                         <div variant="primary-outline" href={`/article/${articleId}/like`} className="text-success likes"><i className="fas fa-thumbs-up"></i>Харесвания (15)</div>
                         <Button variant="primary-outline" href="#" onClick={commentShowHandler} className="text-secondary"><i class="far fa-comments"></i>Коментари ({article.count})</Button>
@@ -116,6 +119,7 @@ function Article() {
                     </div>
                 </Col>
             </Row>
+            </Suspense >
         </>
     );
 }
