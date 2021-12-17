@@ -1,3 +1,34 @@
+# React-Project-Animania
+
+**AniMania** is web system for pet lovers. The app is with Bulgarian interface.
+
+**There are two types of users:**
+-	**Registered users** – can add, edit and delete pet articles and jokes, can add comments to the articles, can like other players' articles and jokes
+-	**Guest users** – can browse through articles, comments and jokes, can register
+- everybody can see the number of comments and likes
+
+
+**Next steps** (will be implemented soon):
+-	**Registered users** – can add, edit and delete offers, can add comments other players' offers
+-	**Migration to Firebase** – i plan change the authentication system and database to Firebase Auth and Firebase Realtime Database, also use Firebase cloud storage for uploading images
+
+
+
+**Test accounts**: the app is working with the [softuni-practice-server](https://github.com/softuni-practice-server/softuni-practice-server) so it can be tested with the accounts provided by the practice server : peter@abv.bg and george@abv.bg with pass 123456, or just create own account
+
+
+
+**Technology stack:**
+-	React: v17.0.2,
+-   React-bootstrap: v2.0.3,
+-   React-router-dom: v6.1.0,
+-	For DB and authentication - softuni-practice-server
+-	Icons - Font-awsome
+
+
+# Documentation added by Create React App
+******************************************
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
