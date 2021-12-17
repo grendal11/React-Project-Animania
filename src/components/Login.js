@@ -2,6 +2,7 @@ import { useContext } from 'react';
 import { useNavigate } from 'react-router-dom';
 
 import { AuthContext } from '../contexts/AuthContext';
+import { useNotificationContext, types } from '../contexts/NotificationContext';
 
 import * as authService from '../services/authService';
 
@@ -10,6 +11,7 @@ import { Form, Button, Row } from 'react-bootstrap';
 const Login = () => {
 
 const {login} = useContext(AuthContext);
+const {addNotification} = useNotificationContext();
 const navigate = useNavigate();
 
     const onLoginHandler = (e) => {
@@ -23,12 +25,11 @@ const navigate = useNavigate();
         authService.login(email, password)
             .then((authData) => {
                 login(authData);
-
+                addNotification('Влязохте в системата', types.success);
                 navigate('/');
             })
             .catch(err => {
-                // TODO: show notification
-                console.log(err);
+                addNotification('Неуспешен вход', types.error);
             });
     }
 

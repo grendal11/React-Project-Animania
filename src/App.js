@@ -1,7 +1,8 @@
-import { Routes, Route } from 'react-router-dom';
+import { Routes, Route, Navigate } from 'react-router-dom';
 
 import { AuthContext } from './contexts/AuthContext';
 import useLocalStorage from './hooks/useLocalStorage';
+import { NotificationProvider } from './contexts/NotificationContext';
 
 import Sitelogo from './components/Sitelogo/Sitelogo';
 import Header from './components/Header';
@@ -21,6 +22,7 @@ import Register from './components/Register';
 import Logout from './components/Logout';
 import './App.css';
 import NotAuthorized from './components/Common/NotAuthorized';
+import Notification from './components/Common/Notification';
 import JokesList from './components/Joke/JokesList';
 
 const initialAuthState = {
@@ -44,41 +46,45 @@ function App() {
 
   return (
     <AuthContext.Provider value={{ user, login, logout }}>
-      <div className="App">
-        <Header />
-        <main className="app-main">
-          <Routes>
-            <Route path="/" element={<Dashboard />} />
-            <Route path="/articles" element={<Articles />} />
-            <Route path="/article" >
-              <Route path=":articleId" element={<Article />} />
-              <Route path=":articleId/comments" element={<ArticleComments />} />
-              <Route element={<GuardedRoute />}>
-                <Route path="create" element={<CreateArticle />} />
-                <Route path=":articleId/comment" element={<AddComment />} />
-                <Route path=":articleId/delete/:commentId" element={<DeleteComment />} />
-                <Route path=":articleId/edit" element={<EditArticle />} />
-                <Route path=":articleId/delete" />
-              </Route>
-              {/* <Route element={<GuardedOwnerRoute />}>
+      <NotificationProvider>
+        <div className="App">
+          <Header />
+          <Notification />
+          <main className="app-main">
+            <Routes>
+              <Route path="/" element={<Dashboard />} />
+              <Route path="/articles" element={<Articles />} />
+              <Route path="/article" >
+                <Route path=":articleId" element={<Article />} />
+                <Route path=":articleId/comments" element={<ArticleComments />} />
+                <Route element={<GuardedRoute />}>
+                  <Route path="create" element={<CreateArticle />} />
+                  <Route path=":articleId/comment" element={<AddComment />} />
+                  <Route path=":articleId/delete/:commentId" element={<DeleteComment />} />
+                  <Route path=":articleId/edit" element={<EditArticle />} />
+                  <Route path=":articleId/delete" />
+                </Route>
+                {/* <Route element={<GuardedOwnerRoute />}>
               </Route> */}
-            </Route>
-            <Route path="/jokes" element={<JokesList />} />
-            <Route path="/joke" >
-              {/* <Route path=":jokeId" element={<Joke />} /> */}
-              <Route path="create" element={<AddJoke />} />
-              <Route path=":jokeId/delete" element={<DeleteJoke />} />
-            </Route>
-            <Route path="/login" element={<Login />} />
-            <Route path="/register" element={<Register />} />
-            <Route path="/logout" element={<Logout />} />
-            <Route path="/notAuthorized" element={<NotAuthorized />} />
-          </Routes>
-        </main>
-        <footer className="App-footer">
-          <span><Sitelogo />&nbsp;App</span>
-        </footer>
-      </div>
+              </Route>
+              <Route path="/jokes" element={<JokesList />} />
+              <Route path="/joke" >
+                {/* <Route path=":jokeId" element={<Joke />} /> */}
+                <Route path="create" element={<AddJoke />} />
+                <Route path=":jokeId/delete" element={<DeleteJoke />} />
+              </Route>
+              <Route path="/login" element={<Login />} />
+              <Route path="/register" element={<Register />} />
+              <Route path="/logout" element={<Logout />} />
+              <Route path="/notAuthorized" element={<NotAuthorized />} />
+              <Route path="/home" element={<Navigate to="/"/>} />
+            </Routes>
+          </main>
+          <footer className="App-footer">
+            <span><Sitelogo />&nbsp;App</span>
+          </footer>
+        </div>
+      </NotificationProvider>
     </AuthContext.Provider>
   );
 }

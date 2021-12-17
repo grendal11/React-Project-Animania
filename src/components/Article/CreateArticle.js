@@ -1,17 +1,22 @@
 import { useNavigate } from 'react-router-dom';
 import { useState, useContext } from 'react';
+
 import { AuthContext } from '../../contexts/AuthContext';
+import { useNotificationContext, types } from '../../contexts/NotificationContext';
+
 import * as articleService from '../../services/articleService';
+
 import { Form, Button } from 'react-bootstrap';
 
 function CreateArticle() {
     const [breed, setBreed] = useState(false);
 
-    const onSwitchBreed = (e) => {    
+    const onSwitchBreed = (e) => {
         setBreed(!breed);
     }
-
     const { user } = useContext(AuthContext);
+    const { addNotification } = useNotificationContext();
+
     const navigate = useNavigate();
 
     const onArticleCreate = (e) => {
@@ -30,6 +35,19 @@ function CreateArticle() {
         let facts = formData.get('facts');
         let ownerId = user._id;
 
+        if (name.length < 1) {
+            window.scrollTo(0, 0);
+            addNotification('Името е задължително', types.warning);
+            return;
+        }
+
+        if (description.length < 20) {
+            window.scrollTo(0, 0);
+            addNotification('Описанието е много кратко. Въведете поне 20 символа', types.warning);
+            return;
+        }
+
+
         articleService.create({
             name,
             category,
@@ -44,8 +62,12 @@ function CreateArticle() {
             ownerId
         }, user.accessToken)
             .then(result => {
+                addNotification('Добавихте успешно статията', types.success);
                 navigate('/articles');
             })
+            .catch(err => {
+                addNotification('Възникна проблем при създаването на статията', types.error);
+            });
     }
 
     return (
@@ -62,7 +84,6 @@ function CreateArticle() {
                 <Form.Group className="mb-3 small-element">
                     <Form.Label>Категория</Form.Label>
                     <Form.Select name="category" id="category">
-                        <option >Изберете</option>
                         <option value="dogs">Кучета</option>
                         <option value="cats">Котки</option>
                         <option value="water">Водни</option>

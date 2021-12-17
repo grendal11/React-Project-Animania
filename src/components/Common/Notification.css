@@ -1,0 +1,19 @@
+.notification {
+    position: absolute;
+    z-index: 1;
+    top: 70px;
+    right: 30px;
+    box-shadow: grey;
+}
+
+.notification-text {
+    font-size: 18px;
+    font-style: italic;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+.notification button {
+    position: absolute;
+    top: 5px;
+    right: 10px;
+}

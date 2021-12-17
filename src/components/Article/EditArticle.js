@@ -1,7 +1,11 @@
 import { useNavigate, useParams } from 'react-router-dom';
 import { useState, useContext } from 'react';
+
 import useArticleState from '../../hooks/useArticleState';
+
 import { AuthContext } from '../../contexts/AuthContext';
+import { useNotificationContext, types } from '../../contexts/NotificationContext';
+
 import * as articleService from '../../services/articleService';
 import { Form, Button } from 'react-bootstrap';
 
@@ -16,6 +20,8 @@ function EditArticle() {
     }
 
     const { user } = useContext(AuthContext);
+    const { addNotification } = useNotificationContext();
+
     const navigate = useNavigate();
 
     const onArticleEdit = (e) => {
@@ -33,6 +39,18 @@ function EditArticle() {
         let breeding = formData.get('breeding');
         let facts = formData.get('facts');
 
+        if (name.length < 1) {
+            window.scrollTo(0, 0);
+            addNotification('Името е задължително', types.warning);
+            return;
+        }
+
+        if (description.length < 20) {
+            window.scrollTo(0, 0);
+            addNotification('Описанието е много кратко. Въведете поне 20 символа', types.warning);
+            return;
+        }
+
         articleService.update(article._id,
             {
                 name,
@@ -47,8 +65,12 @@ function EditArticle() {
                 facts,
             }, user.accessToken)
             .then(result => {
+                addNotification('Промените бяха записани', types.success);
                 navigate('/articles');
             })
+            .catch(err => {
+                addNotification('Възникна грешка. Промените не бяха записани', types.error);
+            });
     }
 
     return (

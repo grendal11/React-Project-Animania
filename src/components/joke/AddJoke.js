@@ -1,11 +1,14 @@
 import { useNavigate } from 'react-router-dom';
 import { useContext } from 'react';
 import { AuthContext } from '../../contexts/AuthContext';
+import { useNotificationContext, types } from '../../contexts/NotificationContext';
 import * as jokeService from '../../services/jokeService';
 import { Form, Button } from 'react-bootstrap';
 
 function AddJoke() {
     const { user } = useContext(AuthContext);
+    const { addNotification } = useNotificationContext();
+
     const navigate = useNavigate();
 
     const onAddJoke = (e) => {
@@ -16,14 +19,24 @@ function AddJoke() {
         let text = formData.get('text');
         let ownerId = user._id;
 
+        if (text.length < 1) {
+
+            addNotification('Не сте въвели текст за вица', types.warning);
+            return;
+        }
+
         jokeService.create({
             name,
             text,
             ownerId
         }, user.accessToken)
             .then(result => {
+                addNotification('Вицът беше добавен успешно', types.success);
                 navigate('/');
             })
+            .catch(err => {
+                addNotification('Възникна грешка. ВИцът не беше добавен', types.error);
+            });
     }
 
     return (

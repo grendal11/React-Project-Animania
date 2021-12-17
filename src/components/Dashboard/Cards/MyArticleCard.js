@@ -24,7 +24,7 @@ function MyArticleCard(props) {
 
         articleService.remove(props._id, user.accessToken)
             .then(() => {
-                navigate('/articles');
+                navigate('/home');
             })
             .finally(() => {
                 setShowDeleteDialog(false);

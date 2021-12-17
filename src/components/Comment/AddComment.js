@@ -1,6 +1,7 @@
 import { useNavigate, useParams } from 'react-router-dom';
-import { useState, useContext } from 'react';
+import {  useContext } from 'react';
 import { AuthContext } from '../../contexts/AuthContext';
+import { useNotificationContext, types } from '../../contexts/NotificationContext';
 import * as commentService from '../../services/commentService';
 import { Form, Button } from 'react-bootstrap';
 
@@ -8,6 +9,8 @@ function AddComment() {
     const { articleId } = useParams();
 
     const { user } = useContext(AuthContext);
+    const { addNotification } = useNotificationContext();
+
     const navigate = useNavigate();
 
     const onAddComment = (e) => {
@@ -18,6 +21,12 @@ function AddComment() {
         let comment = formData.get('comment');
         let ownerId = user._id;
 
+        if (comment.length < 1) {
+           
+            addNotification('Не сте въвели коментар', types.warning);
+            return;
+        }
+
         commentService.create({
             name,
             comment,
@@ -27,6 +36,9 @@ function AddComment() {
             .then(result => {
                 navigate(`/article/${articleId}`);
             })
+            .catch(err => {
+                addNotification('Възникна проблем при добавянето накоментара', types.error);
+            });
     }
 
     return (
