@@ -111,7 +111,7 @@ function Article() {
                             </>
                             : user.email != ""
                                 ? <>
-                                    <Button variant="primary-outline" href={`/article/${articleId}/like`} className="text-success"><i className="fas fa-thumbs-up"></i>Харесай</Button>
+                                    <Button variant="primary-outline" href={`/article/${articleId}/like/${user._id}`} className="text-success"><i className="fas fa-thumbs-up"></i>Харесай</Button>
                                     <Button variant="primary-outline" href={`/article/${articleId}/comment`} className="text-primary"><i class="far fa-comment"></i>Добави коментар</Button>
                                 </>
                                 : null

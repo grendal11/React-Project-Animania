@@ -24,6 +24,8 @@ import './App.css';
 import NotAuthorized from './components/Common/NotAuthorized';
 import Notification from './components/Common/Notification';
 import JokesList from './components/Joke/JokesList';
+import LikeArticle from './components/Article/LikeArticle';
+
 
 const initialAuthState = {
   _id: '',
@@ -61,6 +63,7 @@ function App() {
                   <Route path="create" element={<CreateArticle />} />
                   <Route path=":articleId/comment" element={<AddComment />} />
                   <Route path=":articleId/delete/:commentId" element={<DeleteComment />} />
+                  <Route path=":articleId/like" element={<LikeArticle />} />
                   <Route path=":articleId/edit" element={<EditArticle />} />
                   <Route path=":articleId/delete" />
                 </Route>
