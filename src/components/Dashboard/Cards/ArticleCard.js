@@ -1,6 +1,7 @@
 import { Card, Button, Image } from 'react-bootstrap';
 
 import CategoryIcon from '../../CategoryIcon';
+import ArticleLikesCountShort from '../../Stats/ArticleLikesCountShort';
 import CommentsCount from '../../Stats/CommentsCount';
 import '../Dashboard.css';
 
@@ -22,9 +23,9 @@ function ArticleCard(props) {
                 </Card.Text>
                 <Button variant="secondary" size="sm" href={`/article/${props._id}`}>Виж повече</Button>
                 <div className="article-stats article-card-buttons">
-                    <span variant="success-outline" className="text-danger"><i className="fas fa-thumbs-up"></i> 23</span>
+                    <ArticleLikesCountShort articleId={props._id} />
                     &nbsp;
-                    <CommentsCount articleId={props._id}/>
+                    <CommentsCount articleId={props._id} />
                 </div>
             </Card.Body>
         </Card>

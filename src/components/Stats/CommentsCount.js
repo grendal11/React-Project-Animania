@@ -15,7 +15,7 @@ function CommentsCount(props) {
 
     return (
         <>
-            <span variant="success-outline" className="text-success"><i class="far fa-comments"></i> {commentsCount}</span>
+            <span variant="success-outline" className="text-secondary"><i class="far fa-comments"></i> {commentsCount}</span>
         </>
     );
 }

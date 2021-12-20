@@ -6,6 +6,7 @@ import * as articleService from '../../../services/articleService';
 import CategoryIcon from '../../CategoryIcon';
 import ConfirmDialog from '../../Common/ConfirmDialog';
 import CommentsCount from '../../Stats/CommentsCount';
+import ArticleLikesCountShort from '../../Stats/ArticleLikesCountShort';
 import '../Dashboard.css';
 
 function MyArticleCard(props) {
@@ -41,7 +42,7 @@ function MyArticleCard(props) {
                     &nbsp;
                     {props.name} ({props.category})
                     <div className="article-stats">
-                        <span variant="success-outline" className="text-danger"><i className="fas fa-thumbs-up"></i> 23</span>
+                        <ArticleLikesCountShort articleId={props._id} />
                         &nbsp;
                         <CommentsCount articleId={props._id}/>
                     </div>

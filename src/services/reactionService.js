@@ -16,14 +16,28 @@ export const addLike = async (likeData, token) => {
     return result;
 };
 
-export const getArticleLikes = async (articleId) => {
+export const getArticleLikesCount = async (articleId) => {
     // const query = encodeURIComponent(`articleId="${articleId}"`);
 
-    // return request.get(`${baseUrl}/articleLikes?select=userId&where=${query}`)
+    // return request.get(`${baseUrl}/likes?select=userId&where=${query}`)
     //     .then(res => res.map(x => x.userId));
 
     let result = await fetch(`${baseUrl}/likes`).then(res => res.json());
-    result = Object.values(result).filter(x=>x.articleId == articleId);
 
-    return result;
+    result = Object.values(result).filter(c => c.articleId == articleId);  
+
+    return result.length;
+};
+
+export const getArticleLiked = async (articleId, userId) => {
+    // const query = encodeURIComponent(`articleId="${articleId}"`);
+
+    // return request.get(`${baseUrl}/likes?select=userId&where=${query}`)
+    //     .then(res => res.map(x => x.userId));
+
+    let result = await fetch(`${baseUrl}/likes`).then(res => res.json());
+
+    result = Object.values(result).filter(c => c.articleId == articleId && c.userId == userId);  
+
+    return result.length;
 };

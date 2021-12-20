@@ -11,8 +11,10 @@ const LikeArticle = () => {
     const { user } = useContext(AuthContext);
 
     useEffect(() => {
-        reactionService.getArticleLikes(articleId)
+        reactionService.getArticleLiked(articleId)
             .then(res => {
+                console.log(res);
+                return;
                 let result = res.map(x => x.userId);
                 if (!result.includes(user._id)) {
                     reactionService.addLike({ userId: user._id, articleId }, user.accessToken)

@@ -14,6 +14,7 @@ import ArticleComments from '../Comment/ArticleComments';
 
 import './Article.css';
 import { getColor } from '../util';
+import ArticleLikesCount from '../Stats/ArticleLikesCount';
 
 function Article() {
     const { articleId } = useParams();
@@ -102,7 +103,7 @@ function Article() {
                     }
 
                     <div className="article-down-buttons">
-                        <div variant="primary-outline" href={`/article/${articleId}/like`} className="text-success likes"><i className="fas fa-thumbs-up"></i>Харесвания (15)</div>
+                        <ArticleLikesCount className="likes" articleId={articleId} />
                         <Button variant="primary-outline" href="#" onClick={commentShowHandler} className="text-secondary"><i class="far fa-comments"></i>Коментари ({article.count})</Button>
                         {owner
                             ? <>
