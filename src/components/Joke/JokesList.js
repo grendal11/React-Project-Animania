@@ -17,7 +17,7 @@ function JokesList() {
         <>
             <Suspense fallback={<p>Зареждане...</p>}>
                 <br />
-                {jokes.map(c => <Joke id={c._id} joke={c} />)}
+                {jokes.map(c => <Joke key={c._id} joke={c} />)}
                 <br />
             </Suspense>
         </>

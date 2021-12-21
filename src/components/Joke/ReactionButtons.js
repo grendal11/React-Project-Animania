@@ -1,29 +1,36 @@
 import { AuthContext } from '../../contexts/AuthContext';
+import { useState, useEffect, useContext } from 'react';
 
 import { Button } from 'react-bootstrap';
 
-import { useState, useEffect, useContext } from 'react';
 import * as reactionService from '../../services/reactionService';
 import JokeStats from '../Stats/JokeStats';
 
 function ReactionButtons(props) {
     const { user } = useContext(AuthContext);
 
-    const [reacted, setReacted] = useState(false);
+    const [reacted, setReacted] = useState([]);
 
     useEffect(() => {
-        reactionService.getJokeReacted(props.jokeId, user._Id)
+        reactionService.getJokeReacted(props.jokeId, user._id)
             .then(res => {
-                console.log(res)
+
                 if (res > 0) {
-                    setReacted(true);
+                    setReacted([true]);
                 }
+                else 
+                {
+                    setReacted([false]);
+                }
+            })
+            .catch(err => {
+                console.log(err)
             });
-    }, false);
+    }, []);
 
     return (
         <>
-            {reacted
+            {reacted[0] == true
                 ? <JokeStats jokeId={props.jokeId} />
                 : <>
                     <div className="joke-buttons">

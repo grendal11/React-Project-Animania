@@ -76,7 +76,7 @@ function App() {
                 {/* <Route path=":jokeId" element={<Joke />} /> */}
                 <Route path="create" element={<AddJoke />} />
                 <Route path=":jokeId/delete" element={<DeleteJoke />} />
-                <Route path=":jokeId/reaction/:type" element={<AddJokeReaction />} />
+                <Route path=":jokeId/reaction/:reactionType" element={<AddJokeReaction />} />
               </Route>
               <Route path="/login" element={<Login />} />
               <Route path="/register" element={<Register />} />

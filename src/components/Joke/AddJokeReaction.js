@@ -6,7 +6,7 @@ import * as reactionService from '../../services/reactionService';
 import { useNotificationContext, types } from '../../contexts/NotificationContext';
 
 const AddJokeReaction = () => {
-    const { jokeId, type } = useParams();
+    const { jokeId, reactionType } = useParams();
     const [path, setPath] = useState("");
 
     const { user } = useContext(AuthContext);
@@ -15,32 +15,32 @@ const AddJokeReaction = () => {
     useEffect(() => {
         reactionService.getJokeReacted(jokeId, user._id)
             .then(res => {
-                console.log(res);
+                console.log("HELLOOOOO" + res);
 
                 if (res < 1) {
-                    reactionService.addReaction({ userId: user._id, jokeId, type }, user.accessToken)
+                    reactionService.addReaction({ userId: user._id, jokeId, reactionType }, user.accessToken)
                         .then(res => {
                             console.log(res)
-                            setPath('/jokes');
+                            // setPath('/jokes');
                         })
                         .catch(err => {
                             console.log(err)
                             addNotification('Възникна грешка', types.error);
-                            setPath('/jokes');
+                            // setPath('/jokes');
                         });
                 }
                 else {
                     addNotification('Вече сте реагирали на този виц', types.error);
-                    setPath('/jokes');
+                    // setPath('/jokes');
                 }
 
             })
             .catch(err => {
                 console.log(err)
                 addNotification('Възникна грешка', types.error);
-                setPath('/jokes');
+                // setPath('/jokes');
             });
-
+            setPath('/jokes');
     }, "");
 
 

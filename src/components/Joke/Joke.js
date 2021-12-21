@@ -7,7 +7,7 @@ import JokeStats from '../Stats/JokeStats';
 import ReactionButtons from './ReactionButtons';
 
 
-function Joke({ joke, id }) {
+function Joke({ joke }) {
     const { user } = useContext(AuthContext);
 
     return (
@@ -24,10 +24,10 @@ function Joke({ joke, id }) {
                         {joke.text}
                         {joke.ownerId != user?._id
                             ? <>
-                                <JokeStats jokeId={id} />
+                                <JokeStats jokeId={joke._id} />
                             </>
                             : <>
-                                <ReactionButtons jokeId={id} />
+                                <ReactionButtons jokeId={joke._id} />
                                 {/* <div className="joke-buttons">
                                     <button variant="success-outline" className="text-success"><i className="fas fa-thumbs-up"></i></button>
                                     &nbsp; &nbsp;

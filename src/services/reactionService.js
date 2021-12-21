@@ -72,9 +72,9 @@ export const getJokeReactions = async (jokeId) => {
 
     result = Object.values(result).filter(x => x.jokeId == jokeId);  
 
-    let likes = result.filter(x => x.type == "like").length;
-    let laughs = result.filter(x => x.type == "laugh").length;
-    let dislikes = result.filter(x => x.type == "dislike").length;
+    let likes = result.filter(x => x.reactionType == "like").length;
+    let laughs = result.filter(x => x.reactionType == "laugh").length;
+    let dislikes = result.filter(x => x.reactionType == "dislike").length;
 
     return {likes, laughs, dislikes};
 };

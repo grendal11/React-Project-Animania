@@ -24,7 +24,7 @@ export const getOne = (jokeId) => {
 }
 
 export const getAll = () => {
-    return fetch(`${baseUrl}/jokes/`)
+    return fetch(`${baseUrl}/jokes`)
         .then(res => res.json());
 };
 
