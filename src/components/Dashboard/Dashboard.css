@@ -44,3 +44,6 @@
     width: 85%;
     margin: auto;
 }
+.stats-left {
+    float:left;
+}

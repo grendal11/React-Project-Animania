@@ -25,6 +25,7 @@ import NotAuthorized from './components/Common/NotAuthorized';
 import Notification from './components/Common/Notification';
 import JokesList from './components/Joke/JokesList';
 import LikeArticle from './components/Article/LikeArticle';
+import AddJokeReaction from './components/Joke/AddJokeReaction';
 
 
 const initialAuthState = {
@@ -75,6 +76,7 @@ function App() {
                 {/* <Route path=":jokeId" element={<Joke />} /> */}
                 <Route path="create" element={<AddJoke />} />
                 <Route path=":jokeId/delete" element={<DeleteJoke />} />
+                <Route path=":jokeId/reaction/:type" element={<AddJokeReaction />} />
               </Route>
               <Route path="/login" element={<Login />} />
               <Route path="/register" element={<Register />} />

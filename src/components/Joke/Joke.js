@@ -3,6 +3,8 @@ import { useContext } from 'react';
 
 import { Card, Button } from 'react-bootstrap';
 import './Jokes.css';
+import JokeStats from '../Stats/JokeStats';
+import ReactionButtons from './ReactionButtons';
 
 
 function Joke({ joke, id }) {
@@ -22,15 +24,18 @@ function Joke({ joke, id }) {
                         {joke.text}
                         {joke.ownerId != user?._id
                             ? <>
-                                <div className="stats-buttons">
-                                    <span variant="success-outline" className="text-success"><i className="fas fa-thumbs-up"></i> 23</span>
-                                    &nbsp; &nbsp;
-                                    <span variant="success-outline" className="text-warning"><i class="far fa-laugh"></i> 23</span>
-                                    &nbsp; &nbsp;
-                                    <span variant="success-outline" className="text-danger"><i className="fas fa-thumbs-down"></i> 23</span>
-                                </div>
+                                <JokeStats jokeId={id} />
                             </>
-                            : null
+                            : <>
+                                <ReactionButtons jokeId={id} />
+                                {/* <div className="joke-buttons">
+                                    <button variant="success-outline" className="text-success"><i className="fas fa-thumbs-up"></i></button>
+                                    &nbsp; &nbsp;
+                                    <button variant="success-outline" className="text-warning"><i class="far fa-laugh"></i></button>
+                                    &nbsp; &nbsp;
+                                    <button variant="success-outline" className="text-danger"><i className="fas fa-thumbs-down"></i></button>
+                                </div> */}
+                            </>
                         }
                     </Card.Text>
                 </Card.Body>

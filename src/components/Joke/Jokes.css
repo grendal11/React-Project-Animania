@@ -1,8 +1,14 @@
-.stats-buttons {
+.stats-buttons, .joke-buttons{
     margin: 5px;
-    float: right;    
+    float: right; 
 }
 
 .stats-buttons span {
     margin-left: 5px;
 }
+
+.joke-buttons .reaction-button {
+    font-size: x-large;
+    margin-left: 2px;
+}
+

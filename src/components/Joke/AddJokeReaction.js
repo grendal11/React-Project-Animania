@@ -5,38 +5,40 @@ import { AuthContext } from '../../contexts/AuthContext';
 import * as reactionService from '../../services/reactionService';
 import { useNotificationContext, types } from '../../contexts/NotificationContext';
 
-const LikeArticle = () => {
-    const { articleId } = useParams();
+const AddJokeReaction = () => {
+    const { jokeId, type } = useParams();
     const [path, setPath] = useState("");
 
     const { user } = useContext(AuthContext);
     const { addNotification } = useNotificationContext();
 
     useEffect(() => {
-        reactionService.getArticleLiked(articleId, user._id)
+        reactionService.getJokeReacted(jokeId, user._id)
             .then(res => {
                 console.log(res);
 
                 if (res < 1) {
-                    reactionService.addLike({ userId: user._id, articleId }, user.accessToken)
+                    reactionService.addReaction({ userId: user._id, jokeId, type }, user.accessToken)
                         .then(res => {
                             console.log(res)
-                            setPath(`/article/${articleId}`);
+                            setPath('/jokes');
                         })
                         .catch(err => {
                             console.log(err)
                             addNotification('Възникна грешка', types.error);
+                            setPath('/jokes');
                         });
                 }
                 else {
-                    addNotification('Вече сте харесали статията', types.error);
-                    setPath(`/article/${articleId}`);
+                    addNotification('Вече сте реагирали на този виц', types.error);
+                    setPath('/jokes');
                 }
 
             })
             .catch(err => {
-
+                console.log(err)
                 addNotification('Възникна грешка', types.error);
+                setPath('/jokes');
             });
 
     }, "");
@@ -47,4 +49,4 @@ const LikeArticle = () => {
     );
 }
 
-export default LikeArticle;
+export default AddJokeReaction;

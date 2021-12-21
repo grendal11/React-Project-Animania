@@ -3,6 +3,7 @@ import { useContext, useState, useEffect } from 'react';
 import * as jokeService from '../../services/jokeService';
 import { Card, Button } from 'react-bootstrap';
 import './Jokes.css';
+import JokeStats from '../Stats/JokeStats';
 
 
 function LastJoke() {
@@ -30,13 +31,7 @@ function LastJoke() {
                         {last.text}
                         {last.ownerId != user?._id
                             ? <>
-                                <div className="stats-buttons">
-                                    <span variant="success-outline" className="text-success"><i className="fas fa-thumbs-up"></i> 23</span>
-                                    &nbsp; &nbsp;
-                                    <span variant="success-outline" className="text-warning"><i class="far fa-laugh"></i> 23</span>
-                                    &nbsp; &nbsp;
-                                    <span variant="success-outline" className="text-danger"><i className="fas fa-thumbs-down"></i> 23</span>
-                                </div>
+                                <JokeStats jokeId={last._id} />
                             </>
                             : null
                         }
